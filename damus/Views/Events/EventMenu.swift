@@ -14,6 +14,14 @@ struct EventMenuContext: View {
     let bookmarks: BookmarksManager
     let muted_threads: MutedThreadsManager
     
+    init(damus: DamusState, event: NostrEvent) {
+        self.event = event
+        self.keypair = damus.keypair
+        self.target_pubkey = event.pubkey
+        self.bookmarks = damus.bookmarks
+        self.muted_threads = damus.muted_threads
+    }
+    
     var body: some View {
         HStack {
             Menu {
@@ -25,6 +33,7 @@ struct EventMenuContext: View {
                     .foregroundColor(Color.gray)
             }
         }
+        .padding([.bottom], 4)
         .contentShape(Rectangle())
         .onTapGesture {}
     }
