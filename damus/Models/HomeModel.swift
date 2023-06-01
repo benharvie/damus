@@ -105,6 +105,7 @@ class HomeModel: ObservableObject {
 
         switch kind {
         case .chat: fallthrough
+        case .longform: fallthrough
         case .text:
             handle_text_event(sub_id: sub_id, ev)
         case .contacts:
@@ -437,8 +438,7 @@ class HomeModel: ObservableObject {
 
         // TODO: separate likes?
         var home_filter_kinds: [NostrKind] = [
-            .text,
-            .boost
+            .text, .longform, .boost
         ]
         if !damus_state.settings.onlyzaps_mode {
             home_filter_kinds.append(.like)
