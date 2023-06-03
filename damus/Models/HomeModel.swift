@@ -153,7 +153,7 @@ class HomeModel: ObservableObject {
                 print("nwc: \(resp.req_id) not found in the postbox, nothing to remove [\(relay)]")
             }
             
-            guard let err = resp.response.error else {
+            guard resp.response.error == nil else {
                 print("nwc success: \(resp.response.result.debugDescription) [\(relay)]")
                 nwc_success(state: self.damus_state, resp: resp)
                 return
